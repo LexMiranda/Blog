@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Form</title>
+</head>
+<body>
+    <div> 
+        <form action="/Post/Adiciona" method="post">
+            @Html.ValidationMessage("post.Invalido")
+            @Html.ValidationMessage("titulo")
+            <label>
+                Titulo:
+                <input name="Titulo" value="@ViewBag.Post.Titulo" />
+            </label>
+            @Html.ValidationMessage("conteudo")
+            <label>
+                Conteúdo:
+                <textarea name="conteudo">@ViewBag.Post.Conteudo</textarea><br />
+            </label>
+            @Html.ValidationMessage("dataPublicacao")
+            <label>
+                Data de Publicação:
+                <input name="dataPublicacao" value="@ViewBag.Post.DataPublicacao" />
+            </label>
+            @Html.ValidationMessage("publicado")
+            <label>
+                Publicar?
+                <input type="checkbox" name="publicado" value="true" checked="@ViewBag.Post.Publicado" />
+
+            </label>
+            <input type="submit" value="Cadastrar" />
+        </form>
+    </div>
+</body>
+</html>
