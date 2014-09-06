@@ -13,7 +13,7 @@ namespace MeuBlog.Controllers
 
         public ActionResult Form()
         {
-            ViewBag.Post = new Post();
+         
             return View();
         }
        
@@ -21,18 +21,14 @@ namespace MeuBlog.Controllers
         public ActionResult Index()
         {
             PostDAO dao = new PostDAO();
-            ViewBag.Posts = dao.Lista();
-            return View();
+            IList<Post> posts = dao.Lista();
+            return View(posts);
         }
 
         [HttpPost]
         public ActionResult Adiciona(Post post) {
 
-            if(post.Publicado && !post.DataPublicacao.HasValue)
-            {
-                ModelState.AddModelError("post.Invalido",
-                    "Posts publicados precisam de data");
-            }
+          
             if (ModelState.IsValid)
             {
                 PostDAO dao = new PostDAO();
@@ -41,8 +37,8 @@ namespace MeuBlog.Controllers
             }
             else
             {
-                ViewBag.Post = post;
-                return View("Form");
+               
+                return View("Form", post);
             }
 
 

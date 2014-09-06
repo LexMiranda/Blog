@@ -1,4 +1,4 @@
-﻿
+﻿@model MeuBlog.Models.Post
 @{
     Layout = null;
 }
@@ -12,31 +12,27 @@
 </head>
 <body>
     <div> 
-        <form action="/Post/Adiciona" method="post">
-            @Html.ValidationMessage("post.Invalido")
-            @Html.ValidationMessage("titulo")
-            <label>
-                Titulo:
-                <input name="Titulo" value="@ViewBag.Post.Titulo" />
-            </label>
-            @Html.ValidationMessage("conteudo")
-            <label>
-                Conteúdo:
-                <textarea name="conteudo">@ViewBag.Post.Conteudo</textarea><br />
-            </label>
-            @Html.ValidationMessage("dataPublicacao")
-            <label>
-                Data de Publicação:
-                <input name="dataPublicacao" value="@ViewBag.Post.DataPublicacao" />
-            </label>
-            @Html.ValidationMessage("publicado")
-            <label>
-                Publicar?
-                <input type="checkbox" name="publicado" value="true" checked="@ViewBag.Post.Publicado" />
-
-            </label>
+        @using (Html.BeginForm("Adiciona", "Post", FormMethod.Post)) { 
+            
+            @Html.ValidationMessageFor(p => p.Titulo)
+            @Html.LabelFor(p =>p.Titulo, "Titulo")
+            @Html.TextBoxFor(p => p.Titulo)
+            
+            @Html.ValidationMessageFor(p => p.Conteudo)
+            @Html.LabelFor(p => p.Conteudo, "Conteudo")
+            @Html.TextAreaFor(p => p.Conteudo)
+            
+            @Html.ValidationMessageFor(p => p.DataPublicacao)
+            @Html.LabelFor(p =>p.DataPublicacao, "Data de Publicação")
+            @Html.TextBoxFor(p =>p.DataPublicacao)
+            
+            @Html.ValidationMessageFor(p => p.Publicado)
+            @Html.LabelFor(p => p.Publicado, "Publicado?")
+            @Html.CheckBoxFor(p =>p.Publicado)
+            
             <input type="submit" value="Cadastrar" />
-        </form>
+            
+        }
     </div>
 </body>
 </html>
