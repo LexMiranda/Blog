@@ -1,0 +1,42 @@
+﻿
+@model MeuBlog.Models.Post
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Atualiza</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Atualiza", "Post", FormMethod.Post))
+        {
+
+            @Html.HiddenFor(p => p.Id)
+
+            @Html.ValidationMessageFor(p => p.Titulo)
+            @Html.LabelFor(p => p.Titulo, "Título")
+            @Html.TextBoxFor(p => p.Titulo)
+
+            @Html.ValidationMessageFor(p => p.Conteudo)
+            @Html.LabelFor(p => p.Conteudo, "Conteudo")
+            @Html.TextAreaFor(p => p.Conteudo)
+
+            @Html.ValidationMessageFor(p => p.DataPublicacao)
+            @Html.LabelFor(p => p.DataPublicacao, "Data de Publicação")
+            @Html.TextBoxFor(p => p.DataPublicacao)
+
+            @Html.ValidationMessageFor(p => p.Publicado)
+            @Html.LabelFor(p => p.Publicado, "Publicado?")
+            @Html.TextBoxFor(p => p.Publicado)
+
+            <input type="submit" value="Alterar" />
+        }
+    </div>
+</body>
+</html>
+

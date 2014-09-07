@@ -48,7 +48,7 @@ namespace MeuBlog.DAO
 
         }
 
-        public void Atualiza(Post post)
+        public void Atualizar(Post post)
         {
             using (ISession session = NHibernateHelper.AbreSession())
             {

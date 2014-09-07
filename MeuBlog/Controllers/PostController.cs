@@ -43,5 +43,36 @@ namespace MeuBlog.Controllers
 
 
         }
+
+        public ActionResult Remove(int id)
+        {
+            PostDAO dao = new PostDAO();
+            Post post = dao.BuscaPorId(id);
+            dao.Remover(post);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Atualiza(Post post)
+        {
+            if (ModelState.IsValid)
+            {
+                PostDAO dao = new PostDAO();
+                dao.Atualizar(post);
+                return RedirectToAction("Index"); 
+            }
+            else
+            {
+                return View("Visualiza", post);
+            }
+        }
+
+        public ActionResult Visualiza(int id)
+        {
+            PostDAO dao = new PostDAO();
+            Post post = dao.BuscaPorId(id);
+            return View(post);
+
+        }
+
 	}
 }

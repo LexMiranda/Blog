@@ -14,6 +14,7 @@
 </head>
 <body>
     <div> 
+        @Html.ActionLink("Novo Post", "Form")
         <table>
             <thead>
                 <tr>
@@ -33,6 +34,13 @@
                         <td>@p.Titulo</td>
                         <td>@p.Conteudo</td>
                         <td>@p.DataPublicacao</td>
+                        <td>
+                            @Html.ActionLink("Remover", "Remove", new { id = p.Id })
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Editar", "Visualiza", new { id = p.Id })
+                        </td>
                     </tr>
                 }
             </tbody>
