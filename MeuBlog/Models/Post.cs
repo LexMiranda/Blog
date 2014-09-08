@@ -8,11 +8,16 @@ namespace MeuBlog.Models
 {
     public class Post
     {
+        
         public virtual int Id { get; set; }
         [StringLength(20)]
+        [Required]
         public virtual string Titulo { get; set; }
+        [Required]
         public virtual string Conteudo { get; set; }
+       
         public virtual DateTime? DataPublicacao { get; set; }
+       
         public virtual bool Publicado { get; set; }
     }
 }

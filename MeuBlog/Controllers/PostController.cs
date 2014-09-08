@@ -18,6 +18,7 @@ namespace MeuBlog.Controllers
         }
        
         // GET: /Post/
+        [Route("posts", Name="ListaPosts")]
         public ActionResult Index()
         {
             PostDAO dao = new PostDAO();
@@ -65,7 +66,7 @@ namespace MeuBlog.Controllers
                 return View("Visualiza", post);
             }
         }
-
+        [Route("posts/{id}", Name="VisualizaPost")]
         public ActionResult Visualiza(int id)
         {
             PostDAO dao = new PostDAO();
