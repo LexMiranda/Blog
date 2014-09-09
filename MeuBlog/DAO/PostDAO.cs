@@ -52,7 +52,6 @@ namespace MeuBlog.DAO
         {
             using (ISession session = NHibernateHelper.AbreSession())
             {
-
                 ITransaction tx = session.BeginTransaction();
                 session.Merge(post);
                 tx.Commit();
