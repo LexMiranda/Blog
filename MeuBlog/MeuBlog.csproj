@@ -100,7 +100,14 @@
     <Content Include="App_Data\webblog_log.ldf">
       <DependentUpon>webblog.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Css\blog.css" />
+    <Content Include="Content\Css\bootstrap-theme.css" />
+    <Content Include="Content\Css\bootstrap-theme.min.css" />
+    <Content Include="Content\Css\bootstrap.css" />
+    <Content Include="Content\Css\bootstrap.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Content\Css\bootstrap-theme.css.map" />
+    <Content Include="Content\Css\bootstrap.css.map" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -133,6 +140,7 @@
     <Content Include="Views\Post\Adiciona.cshtml" />
     <Content Include="Views\Post\Form.cshtml" />
     <Content Include="Views\Post\Visualiza.cshtml" />
+    <Content Include="Views\Shared\_Lyout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
