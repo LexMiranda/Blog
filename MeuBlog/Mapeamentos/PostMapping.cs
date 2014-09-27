@@ -18,6 +18,11 @@ namespace MeuBlog.Mapeamentos
             Map(post => post.DataPublicacao);
             Map(post => post.Publicado);
 
+            HasManyToMany(p => p.Tags)
+                .Table("Post_Tags")
+                .ParentKeyColumn("PostId")
+                .ChildKeyColumn("TagId");
+
         }
     }
 }

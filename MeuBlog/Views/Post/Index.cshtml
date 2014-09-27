@@ -1,33 +1,22 @@
 ﻿
 @model IList<MeuBlog.Models.Post>
 
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
         @Html.ActionLink("Novo Post", "Form")
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Título</th>
-                    <th>Conteúdo</th>
-                    <th>Data de Publicação</th>
-                    
-                </tr>
+        <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Título</th>
+            <th>Conteúdo</th>
+            <th>Data de Publicação</th>
 
-            </thead>
-            <tbody>
-                @foreach(var p in Model)
+        </tr>
+
+    </thead>
+            <tbody class="table-hover">
+                @foreach (var p in Model)
                 {
                     <tr>
                         <td>@p.Id</td>
@@ -44,7 +33,7 @@
                     </tr>
                 }
             </tbody>
-        </table>
-    </div>
-</body>
-</html>
+</table>
+
+
+   

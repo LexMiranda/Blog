@@ -1,2 +1,17 @@
-﻿body {
+body {
+
+
+}
+
+.blog-main {
+   
+   background-color: #d6e1e5;
+}
+.blog-nav{
+    background-color: #d6e1e5;
+    
+}
+
+.blog-nav> a:hover{
+    background: #a7d1e0; 
 }

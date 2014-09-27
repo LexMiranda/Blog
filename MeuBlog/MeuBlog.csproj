@@ -108,10 +108,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Css\bootstrap-theme.css.map" />
     <Content Include="Content\Css\bootstrap.css.map" />
-    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <None Include="Properties\PublishProfiles\meublog - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\meublog - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -123,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="DAO\PostDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -130,6 +133,8 @@
     </Compile>
     <Compile Include="Infra\NHibernateHelper.cs" />
     <Compile Include="Mapeamentos\PostMapping.cs" />
+    <Compile Include="Mapeamentos\TagMapping.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,7 +145,11 @@
     <Content Include="Views\Post\Adiciona.cshtml" />
     <Content Include="Views\Post\Form.cshtml" />
     <Content Include="Views\Post\Visualiza.cshtml" />
-    <Content Include="Views\Shared\_Lyout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_MenuSuperior.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Cabecalho.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

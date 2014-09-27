@@ -1,38 +1,35 @@
 ﻿@model MeuBlog.Models.Post
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Form</title>
-</head>
-<body>
-    <div> 
-        @using (Html.BeginForm("Adiciona", "Post", FormMethod.Post)) { 
-            
-            @Html.ValidationMessageFor(p => p.Titulo)
-            @Html.LabelFor(p =>p.Titulo, "Titulo")
-            @Html.TextBoxFor(p => p.Titulo)
-            
-            @Html.ValidationMessageFor(p => p.Conteudo)
-            @Html.LabelFor(p => p.Conteudo, "Conteudo")
-            @Html.TextAreaFor(p => p.Conteudo)
-            
-            @Html.ValidationMessageFor(p => p.DataPublicacao)
-            @Html.LabelFor(p =>p.DataPublicacao, "Data de Publicação")
-            @Html.TextBoxFor(p =>p.DataPublicacao)
-            
-            @Html.ValidationMessageFor(p => p.Publicado)
-            @Html.LabelFor(p => p.Publicado, "Publicado?")
-            @Html.CheckBoxFor(p =>p.Publicado)
-            
+        @using (Html.BeginForm("Adiciona", "Post", FormMethod.Post))
+        {
+            <div>
+                @Html.ValidationMessageFor(p => p.Titulo)
+                @Html.LabelFor(p => p.Titulo, "Titulo")
+                @Html.TextBoxFor(p => p.Titulo, new { @class = "form-control" })
+            </div>
+    <div>
+        @Html.ValidationMessageFor(p => p.Conteudo)
+        @Html.LabelFor(p => p.Conteudo, "Conteudo")
+        @Html.TextAreaFor(p => p.Conteudo, new { @class = "form-control", rows=10 })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(p => p.DataPublicacao)
+        @Html.LabelFor(p => p.DataPublicacao, "Data de Publicação")
+        @Html.TextBoxFor(p => p.DataPublicacao, new { @class = "form-control" })
+    </div>
+            <div class="checkbox">
+                @Html.ValidationMessageFor(p => p.Publicado)
+                @Html.LabelFor(p => p.Publicado, "Publicado?")
+                @Html.CheckBoxFor(p => p.Publicado)
+            </div>
             <input type="submit" value="Cadastrar" />
             
         }
-    </div>
-</body>
-</html>
+
+@section Scripts{
+    
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
