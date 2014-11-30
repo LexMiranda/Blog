@@ -10,11 +10,14 @@ namespace MeuBlog.Models
     {
         
         public virtual int Id { get; set; }
+
         [StringLength(20)]
         [Required]
         public virtual string Titulo { get; set; }
+
         [Required]
         public virtual string Conteudo { get; set; }
+
         
         public virtual DateTime? DataPublicacao { get; set; }
        
