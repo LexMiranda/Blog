@@ -1,5 +1,6 @@
 ﻿using MeuBlog.DAO;
 using MeuBlog.Models;
+using MeuBlog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,24 +28,30 @@ namespace MeuBlog.Controllers
         }
 
         [HttpPost]
-        public ActionResult Adiciona(Post post) {
+        public ActionResult Adiciona(PostViewModel viewModel) {
 
-          
+            if (viewModel.Publicado && !viewModel.DataPublicacao.HasValue)
+            {
+                ModelState.AddModelError("post.Invalido",
+                    "Posts Publicados precisam de data");
+            }
             if (ModelState.IsValid)
             {
-                PostDAO dao = new PostDAO();
-                dao.Adiciona(post);
+                PostDAO postDao = new PostDAO();
+                TagDAO tagDao = new TagDAO();
+                Post post = viewModel.CriaPost(tagDao);
+                postDao.Adiciona(post);
                 return RedirectToAction("Index"); 
             }
             else
             {
-               
-                return View("Form", post);
+
+                return View("Form", viewModel);
             }
 
 
         }
-       
+       [HttpPost]
         public ActionResult Remove(int id)
         {
             PostDAO dao = new PostDAO();
