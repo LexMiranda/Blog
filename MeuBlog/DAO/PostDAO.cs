@@ -11,63 +11,59 @@ namespace MeuBlog.DAO
 {
     public class PostDAO
     {
+        private ISession session;
+
+        public PostDAO(ISession session)
+        {
+            this.session = session;
+        }
+
         [HttpPost]
         public void Adiciona(Post post)
         {
-            using (ISession session = NHibernateHelper.AbreSession())
-            {
-                ITransaction tx = session.BeginTransaction();
-                session.Save(post);
-                tx.Commit();
-
-
-            }
+            
+            ITransaction tx = session.BeginTransaction();
+            session.Save(post);
+            tx.Commit();
 
         }
 
         
         public Post BuscaPorId(int id) { 
             
-            using(ISession session = NHibernateHelper.AbreSession()){
-
-                return session.Get<Post>(id);
-            }
+            return session.Get<Post>(id);
+            
         }
 
         public void Remover(Post post) {
-
-            using (ISession session = NHibernateHelper.AbreSession())
-            {
 
                 ITransaction tx = session.BeginTransaction();
                 session.Delete(post);
                 tx.Commit();
 
 
-            }
+           
 
         }
 
         public void Atualizar(Post post)
         {
-            using (ISession session = NHibernateHelper.AbreSession())
-            {
+           
                 ITransaction tx = session.BeginTransaction();
                 session.Merge(post);
                 tx.Commit();
 
-            }
+            
           
         }
 
         public IList<Post> Lista()
         {
-            using (ISession session = NHibernateHelper.AbreSession())
-            {
+            
                 string hql = "select p from Post p";
                 IQuery query = session.CreateQuery(hql);
                 return query.List<Post>();
-            }
+            
         }
     }
 }

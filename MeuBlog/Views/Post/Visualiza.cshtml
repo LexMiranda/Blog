@@ -1,5 +1,5 @@
 ﻿
-@model MeuBlog.Models.Post
+@model MeuBlog.ViewModels.PostViewModel
 
         @using (Html.BeginForm("Atualiza", "Post", FormMethod.Post))
         {
@@ -23,7 +23,8 @@
                 @Html.LabelFor(p => p.Publicado, "Publicado?")
                 @Html.CheckBoxFor(p => p.Publicado)
             </div>  
-
+            @Html.LabelFor(p => p.Tags, "Tags: ")
+            @Html.TextBoxFor(p =>p.Tags, new {@class="form-control"})
             <input type="submit" value="Alterar" />
         }
    

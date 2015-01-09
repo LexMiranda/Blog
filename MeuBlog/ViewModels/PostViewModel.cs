@@ -21,6 +21,18 @@ namespace MeuBlog.ViewModels
         public bool Publicado { get; set; }
         public string Tags { get; set; }
 
+        public PostViewModel() { }
+
+        public PostViewModel(Post post)
+        {
+            this.Id = post.Id;
+            this.Titulo = post.Titulo;
+            this.Conteudo = post.Conteudo;
+            this.DataPublicacao = post.DataPublicacao;
+            this.Publicado = post.Publicado;
+            this.Tags = String.Join(" ", post.Tags.Select(p =>p.Nome));
+        }
+
         public Post CriaPost(TagDAO dao) {
 
             Post post = new Post

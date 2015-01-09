@@ -11,6 +11,15 @@ namespace MeuBlog.Controllers
 {
     public class PostController : Controller
     {
+        private PostDAO dao;
+        private TagDAO tagDao;
+
+
+        public PostController(PostDAO dao, TagDAO tagDao)
+        {
+            this.dao = dao;
+            this.tagDao = tagDao;
+        }
 
         public ActionResult Form()
         {
@@ -22,7 +31,7 @@ namespace MeuBlog.Controllers
         [Route("posts", Name="ListaPosts")]
         public ActionResult Index()
         {
-            PostDAO dao = new PostDAO();
+           
             IList<Post> posts = dao.Lista();
             return View(posts);
         }
@@ -37,10 +46,9 @@ namespace MeuBlog.Controllers
             }
             if (ModelState.IsValid)
             {
-                PostDAO postDao = new PostDAO();
-                TagDAO tagDao = new TagDAO();
+                
                 Post post = viewModel.CriaPost(tagDao);
-                postDao.Adiciona(post);
+                dao.Adiciona(post);
                 return RedirectToAction("Index"); 
             }
             else
@@ -54,31 +62,38 @@ namespace MeuBlog.Controllers
        [HttpPost]
         public ActionResult Remove(int id)
         {
-            PostDAO dao = new PostDAO();
+            
             Post post = dao.BuscaPorId(id);
             dao.Remover(post);
             return RedirectToAction("Index");
         }
 
-        public ActionResult Atualiza(Post post)
+        public ActionResult Atualiza(PostViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                PostDAO dao = new PostDAO();
+                
+                
+                Post post = viewModel.CriaPost(tagDao);
                 dao.Atualizar(post);
                 return RedirectToAction("Index"); 
             }
             else
             {
-                return View("Visualiza", post);
+                return View("Visualiza", viewModel);
             }
         }
+
+
         [Route("posts/{id}", Name="VisualizaPost")]
+
         public ActionResult Visualiza(int id)
         {
-            PostDAO dao = new PostDAO();
+            
             Post post = dao.BuscaPorId(id);
-            return View(post);
+            PostViewModel viewModel = new PostViewModel(post);
+
+            return View(viewModel);
 
         }
 
