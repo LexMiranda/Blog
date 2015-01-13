@@ -27,6 +27,7 @@ namespace MeuBlog.Infra
 
         public static ISession AbreSession()
         {
+            
             return factory.OpenSession();
                  
         }

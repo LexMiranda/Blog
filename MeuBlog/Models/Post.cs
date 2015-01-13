@@ -25,6 +25,8 @@ namespace MeuBlog.Models
 
         public virtual IList<Tag> Tags { get; set; }
 
+        public virtual Usuario Autor { get; set; }
+
         public Post()
         {
             this.Tags = new List<Tag>();

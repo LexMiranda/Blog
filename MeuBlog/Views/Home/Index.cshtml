@@ -1,3 +1,22 @@
-﻿
-<h3>Página Inicial</h3>
-<p>Bem vindo ao meu blog</p>
+﻿@model IList<MeuBlog.Models.Post>
+           
+@foreach (var p in Model)
+{
+    <div>
+        <div> @p.Titulo</div>
+        @if (p.Autor != null)
+        {
+            <div>
+                @p.Autor.Nome - @p.DataPublicacao
+            </div>
+        }
+        else
+        {
+            <div>
+                Sem autor - @p.DataPublicacao
+            </div>
+        }
+        @p.Conteudo
+    </div>
+    
+}

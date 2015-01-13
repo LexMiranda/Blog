@@ -29,7 +29,8 @@
                 @Html.TextBoxFor(p => p.Tags, new  { @class ="form-control"})
               
             </div> 
-             
+             @Html.DropDownListFor(p =>p.AutorId, new SelectList(ViewBag.Usuarios,"Id", "Nome"), "Sem autor", new {@class="form-control"})
+            
             <input type="submit" value="Cadastrar" />
             
         }

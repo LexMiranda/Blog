@@ -13,6 +13,7 @@ namespace MeuBlog.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using MeuBlog.Controllers;
 
     public static class NinjectWebCommon 
     {
@@ -67,6 +68,8 @@ namespace MeuBlog.App_Start
             kernel.Bind<ISession>()
                 .ToMethod(x => NHibernateHelper.AbreSession())
                 .InRequestScope();
+
+         
         }        
     }
 }

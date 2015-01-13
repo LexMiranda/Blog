@@ -11,10 +11,21 @@ namespace MeuBlog.Controllers
 {
     public class PostController : Controller
     {
+        private PostDAO dao;
+        private TagDAO tagDao;
+        private UsuarioDAO usuarioDao;
+        
+        public PostController(PostDAO postDao, TagDAO tagDao, UsuarioDAO usuarioDao)
+        {
+            this.dao = postDao;
+            this.tagDao = tagDao;
+            this.usuarioDao = usuarioDao;
+        }
 
         public ActionResult Form()
         {
-         
+
+            ViewBag.Usuarios = usuarioDao.Lista();
             return View();
         }
        
@@ -22,7 +33,8 @@ namespace MeuBlog.Controllers
         [Route("posts", Name="ListaPosts")]
         public ActionResult Index()
         {
-            PostDAO dao = new PostDAO();
+            
+            
             IList<Post> posts = dao.Lista();
             return View(posts);
         }
@@ -37,21 +49,20 @@ namespace MeuBlog.Controllers
             }
             if (ModelState.IsValid)
             {
-                PostDAO postDao = new PostDAO();
-                TagDAO tagDao = new TagDAO();
-                Post post = viewModel.CriaPost(tagDao);
-                postDao.Adiciona(post);
+                
+                Post post = viewModel.CriaPost(tagDao,usuarioDao);
+                dao.Adiciona(post);
                 return RedirectToAction("Index"); 
             }
             else
             {
-
+                ViewBag.Usuarios = usuarioDao.Lista();
                 return View("Form", viewModel);
             }
 
 
         }
-       [HttpPost]
+       
         public ActionResult Remove(int id)
         {
             
@@ -60,25 +71,26 @@ namespace MeuBlog.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Atualiza(Post post)
+        public ActionResult Atualiza(PostViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                PostDAO dao = new PostDAO();
+                Post post = viewModel.CriaPost(tagDao, usuarioDao);
                 dao.Atualizar(post);
                 return RedirectToAction("Index"); 
             }
             else
             {
-                return View("Visualiza", post);
+                return View("Visualiza", viewModel);
             }
         }
         [Route("posts/{id}", Name="VisualizaPost")]
         public ActionResult Visualiza(int id)
         {
-            PostDAO dao = new PostDAO();
+            
             Post post = dao.BuscaPorId(id);
-            return View(post);
+            PostViewModel viewModel = new PostViewModel(post);
+            return View(viewModel);
 
         }
 

@@ -41,9 +41,6 @@ namespace MeuBlog.DAO
                 session.Delete(post);
                 tx.Commit();
 
-
-           
-
         }
 
         public void Atualizar(Post post)
@@ -60,10 +57,17 @@ namespace MeuBlog.DAO
         public IList<Post> Lista()
         {
             
-                string hql = "select p from Post p";
+                String hql = "select p from Post p";
                 IQuery query = session.CreateQuery(hql);
                 return query.List<Post>();
             
         }
+
+        public IList<Post> ListaPublicados()
+        {
+            string hql = "select p from Post p where p.Publicado = true order by p.DataPublicacao desc";
+            IQuery query = session.CreateQuery(hql);
+            return query.List<Post>();
+        } 
     }
 }

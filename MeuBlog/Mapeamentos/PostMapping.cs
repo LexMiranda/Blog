@@ -21,8 +21,9 @@ namespace MeuBlog.Mapeamentos
             HasManyToMany(p => p.Tags)
                 .Table("Post_Tags")
                 .ParentKeyColumn("PostId")
-                .ChildKeyColumn("TagId")
-                .Not.LazyLoad();
+                .ChildKeyColumn("TagId");
+            References(p => p.Autor, "AutorId");
+
 
         }
     }

@@ -14,13 +14,14 @@ namespace MeuBlog.ViewModels
 
        
         public string Titulo { get; set; }
-    
+
         public string Conteudo { get; set; }
-                
+
         public DateTime? DataPublicacao { get; set; }
         public bool Publicado { get; set; }
         public string Tags { get; set; }
-
+        public int? AutorId { get; set; }
+        
         public PostViewModel() { }
 
         public PostViewModel(Post post)
@@ -31,9 +32,13 @@ namespace MeuBlog.ViewModels
             this.DataPublicacao = post.DataPublicacao;
             this.Publicado = post.Publicado;
             this.Tags = String.Join(" ", post.Tags.Select(p =>p.Nome));
+            if (post.Autor != null)
+            {
+                this.AutorId = post.Autor.Id;
+            }
         }
 
-        public Post CriaPost(TagDAO dao) {
+        public Post CriaPost(TagDAO dao, UsuarioDAO usuarioDao) {
 
             Post post = new Post
             {
@@ -43,8 +48,12 @@ namespace MeuBlog.ViewModels
                 Conteudo = this.Conteudo,
                 DataPublicacao = this.DataPublicacao,
                 Publicado = this.Publicado
+                
 
             };
+
+       
+
             foreach (String nomeTag in this.Tags.Split(' '))
             {
                 Tag tag = dao.BuscaPorNome(nomeTag);
@@ -55,6 +64,8 @@ namespace MeuBlog.ViewModels
                 }
                 post.Tags.Add(tag);
             }
+
+            post.Autor = usuarioDao.BuscaPorId(this.AutorId);
             return post;
         }
     }
